@@ -1,0 +1,106 @@
+{
+  "signInToYourAccount": "Sign in to your account",
+  "password": "Password",
+  "login": "Login",
+  "contact": "Contact",
+
+
+
+  "dashboard": "Dashboard",
+  "language": "Language",
+  "logout": "Logout",
+
+
+
+  "users": "Users",
+  "manageUsersAndTheirStores": "Manage users and their stores",
+  "stores": "Stores",
+  "displayAllTheStores": "Display all stores",
+  "products": "Products",
+  "showsAllTheProductsInTheSystem": "Shows all the products in the system",
+  "orders": "Orders",
+  "displayAllTheUsersOrders": "Display all the users orders",
+  "bestSellers": "Best sellers",
+  "theMostOrderedStores": "The most ordered stores",
+  "bestProducts": "Best products",
+  "theMostOrderedProducts": "The most ordered products",
+
+
+
+  "username": "Username",
+  "email": "Email",
+  "storeName": "Store name",
+  "storeId": "Store ID",
+  "status": "Status",
+  "active": "Active",
+  "banned": "Banned",
+
+
+
+  "search": "Search",
+  "addStore": "Add store",
+  "deleteStore": "Delete store",
+  "delete": "Delete",
+  "totalStoreOrders": "Total store orders",
+  "SDG": "SDG",
+  "id": "ID",
+  "store": "Store",
+  "orderedBy": "Ordered by",
+  "orderDate": "Order date",
+  "details": "Details",
+  "locationAndDetails": "Location and details",
+  "categories": "Categories",
+  "image": "Image",
+  "name": "Name",
+  "category": "Category",
+  "price": "Price",
+  "description": "Description",
+  "allZITUsersAppearsHerePleaseSelectAUserToCreateAStore": "All ZIT users appears here please select a user to create a store",
+  "selectUser": "Select user",
+  "storeImage": "Store image",
+  "chooseAUser": "Choose a user",
+  "chooseImage": "choose Image",
+  "enter": "Enter",
+  "add": "Add",
+  "storeAddedSuccessfully": "Store added successfully",
+  "anErrorOccurredWhileAddingTheStore": "An error occurred while adding the store",
+  "pleaseProvideTheImageOfTheStore": "Please provide the image of the store",
+  "pleaseProvideTheOwnerOfTheStore": "Please provide the owner of the store",
+  "pleaseProvideTheNameOfTheStore": "Please provide the name of the store",
+  "allZITStoresAppearsHerePleaseSelectAStoreToDelete": "all ZIT stores appears here please select a store to delete",
+  "selectStore": "Select store",
+  "chooseAStore": "Choose a store",
+  "enterStoreName": "Enter store name",
+  "storeDeletedSuccessfully": "Store deleted successfully",
+  "anErrorOccurredWhileDeletingTheStore": "An error occurred while deleting the store",
+  "pleaseProvideTheStore": "Please provide the store",
+  "storeNameNotMatched": "Store name not matched",
+  "orderItems":"Order items",
+
+
+
+
+
+
+
+  "totalZITOrders": "Total ZIT orders",
+  "OnDelivery": "On delivery",
+  "Preparing": "Preparing",
+  "Canceled": "Canceled",
+  "Delivered": "Delivered",
+  "productName": "Product name",
+  "quantity": "Quantity",
+  "subtotal": "Subtotal",
+  "theTotal": "The total",
+
+
+
+
+
+  "orderTimes": "Order Times",
+  "owner": "Owner",
+  "ordersCount": "Orders Count"
+
+
+
+}

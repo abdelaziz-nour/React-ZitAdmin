@@ -1,0 +1,104 @@
+{
+
+  "signInToYourAccount": "تسجيل الدخول لحسابك",
+  "password": "كلمة المرور",
+  "login": "دخول",
+  "contact": "تواصل معنا",
+
+
+  "dashboard": "الرئيسية",
+  "language": "اللغة",
+  "logout": "تسجيل الخروج",
+
+
+
+  "users": "المستخدمين",
+  "manageUsersAndTheirStores": "قم بإدارة المستخدمين ومتاجرهم",
+  "stores": "المتاجر",
+  "displayAllTheStores": "جميع المتاجر",
+  "products": "المنتجات",
+  "showsAllTheProductsInTheSystem": "جميع المنتجات المسجلة",
+  "orders": "الطلبات",
+  "displayAllTheUsersOrders": "جميع طلبات السمتخدمين",
+  "bestSellers": "أفضل البائعين",
+  "theMostOrderedStores": "أفضل المتاجر من حيث الطلبات",
+  "bestProducts": "أفضل المنتجات",
+  "theMostOrderedProducts": "أفضل المنتجات من حيث الطلبات",
+
+
+
+  "username": "اسم المستخدم",
+  "email": "البريد",
+  "storeName": "إسم المتجر",
+  "storeId": "مُعَرف المتجر",
+  "status": "الحالة",
+  "active": "نشط",
+  "banned": "محظور",
+
+
+
+  "search": "بحث",
+  "addStore": "اضافة متجر",
+  "deleteStore": "حذف متجر",
+  "delete": "حذف",
+  "totalStoreOrders": "مجموع طلبات المتجر",
+  "SDG": "جنيه",
+  "id": "المٌعرف",
+  "store": "المتجر",
+  "orderedBy": "صاحب الطلب",
+  "orderDate": "تاريخ الطلب",
+  "details": "التفاصيل",
+  "locationAndDetails": "المكان و التفاصيل",
+  "categories": "الفئات",
+  "image": "الصورة",
+  "name": "الإسم",
+  "category": "الفئة",
+  "price": "السعر",
+  "description": "الوصف",
+  "allZITUsersAppearsHerePleaseSelectAUserToCreateAStore": "جميع مستخدمي مؤسسة (زول اي تي) يظهرون هنا الرجاء اختيار متسخدم لإنشاء متجر",
+  "selectUser": "إختر مستخدم",
+  "storeImage": "صورة المتجر",
+  "chooseAUser": "إختر مستخدم",
+  "chooseImage": "إختر صورة",
+  "enter": "أدخل",
+  "add": "إضافة",
+  "storeAddedSuccessfully": "تم إنشاء المتجر بنجاح",
+  "anErrorOccurredWhileAddingTheStore": "حدثت مشكلة اثناء إضافة المتجر",
+  "pleaseProvideTheImageOfTheStore": "الرجاء إدخال صورة المتجر",
+  "pleaseProvideTheOwnerOfTheStore": "الرجاء اختيار مالك المتجر",
+  "pleaseProvideTheNameOfTheStore": "الرجاء إدخال إسم المتجر",
+  "allZITStoresAppearsHerePleaseSelectAStoreToDelete": "جميع متاجر مؤسسة (زول اي تي ) تظهر هنا الرجاء إختيار المتجر المراد حذفه",
+  "selectStore": "إختر متجر",
+  "chooseAStore": "إختر متجر",
+  "enterStoreName": " أدخل اسم المتجر لحذفه",
+  "storeDeletedSuccessfully": "تم حذف المتجر بنجاح",
+  "anErrorOccurredWhileDeletingTheStore": "حدثت مشكلة أثناء حذف المتجر",
+  "pleaseProvideTheStore": "الرجاء اختيار المتجر",
+  "storeNameNotMatched": "إسم المتجر المدخل غير مطابق لإسم المتجر المراد حذفه",
+  "orderItems":"المنتجات المطلوبة",
+
+
+
+
+
+
+  "totalZITOrders": "جميع طلبات (زول اي تي)",
+  "OnDelivery": "جاري التوصيل",
+  "Preparing": "جاري التجهيز",
+  "Canceled": "تم الالغاء",
+  "Delivered": "تم التوصيل",
+  "productName": "إسم المنتج",
+  "quantity": "الكمية",
+  "subtotal": "سعر الكمية",
+  "theTotal": "المجموع",
+
+
+
+
+
+  "orderTimes": "عدد مرات الطلب",
+  "owner": "المالك",
+  "ordersCount": "مرات الطلب"
+
+
+}
