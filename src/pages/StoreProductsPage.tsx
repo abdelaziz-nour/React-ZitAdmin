@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 import StoreProductsTable from "../components/tables/StoreProductsTable";
 import SearchField from "../components/SearchField";
 import StoreCategoriesTable from "../components/tables/StoreCategoriesTable";
-import { PhoneMissed } from "@mui/icons-material";
 import shoppingBagIcon from "../assets/icons/shopping-bag-icon.png";
 import categoryIcon from "../assets/icons/category-icon.png";
 

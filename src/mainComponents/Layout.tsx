@@ -15,7 +15,7 @@ const Layout = () => {
     (state: RootState) => state.auth.isAuthenticated
   );
   const [currentDirection, setCurrentDirection] = useState("ltr");
-  const { t, i18n } = useTranslation();
+  const {  i18n } = useTranslation();
 
   useEffect(() => {
     if (i18n.language === "ar") {

@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { BrightnessLowRounded, DashboardRounded } from "@mui/icons-material";
+import {  DashboardRounded } from "@mui/icons-material";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
@@ -34,7 +34,7 @@ type Props = {
 };
 
 const CListItem = ({ icon, text, to }: Props) => {
-  const { t, i18n } = useTranslation();
+  const {  i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
