@@ -10,6 +10,7 @@ import {
   Paper,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { DashboardRounded } from "@mui/icons-material";
@@ -25,7 +26,8 @@ import productsIcon from "../assets/icons/products-icon.png";
 import ordersIcon from "../assets/icons/orders-icon.png";
 import sellersIcon from "../assets/icons/sellers-icons.png";
 import products2Icon from "../assets/icons/products2-icon.png";
-import { SIDEBAR_WIDTH, xs } from "../redux/app/constants";
+import { SIDEBAR_WIDTH,  } from "../redux/app/constants";
+import { theme } from "../themes";
 
 type Props = {
   icon: React.ReactElement;
@@ -34,6 +36,8 @@ type Props = {
 };
 
 const CListItem = ({ icon, text, to }: Props) => {
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -107,6 +111,8 @@ const CListItem = ({ icon, text, to }: Props) => {
   );
 };
 const Sidebar = () => {
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { t, i18n } = useTranslation();
   return (
     <Drawer

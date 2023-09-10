@@ -207,7 +207,6 @@ const OrdersTable = ({
   };
 
   const handleExport = (formData: OrdersExportOptions, exportType: string) => {
-    console.log(formData, exportType);
     switch (exportType) {
       case "PDF":
         handlePDFExport(formData);
@@ -581,7 +580,6 @@ const OrdersTable = ({
       filteredData = filteredData.filter((row) =>
         row.id.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      console.log(filteredData);
     }
 
     setFilteredRows(

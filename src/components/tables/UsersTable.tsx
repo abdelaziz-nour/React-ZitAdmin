@@ -255,7 +255,6 @@ const UsersTable = ({ users, searchQuery }: UsersTableProps) => {
    */
   const handleFilter = (formData: StatusFilterForm) => {
     setFilterData(formData);
-    console.log(formData);
   };
   const handleExport = (formData: UsersExportOptions, exportType: string) => {
     switch (exportType) {

@@ -1,13 +1,16 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
 import StoreCard from "../components/StoreCard";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING ,xs} from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetStoresQuery } from "../redux/features/apiSlice";
 import AddStoreDialog from "../components/AddStoreDialog";
 import DeleteStoreDialog from "../components/DeleteStoreDialog";
+import { theme } from "../themes";
 
 const StoresPage = () => {
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { t } = useTranslation();
   const { data: stores, isLoading } = useGetStoresQuery();
 

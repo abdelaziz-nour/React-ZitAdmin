@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING ,xs} from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetOrdersQuery } from "../redux/features/apiSlice";
 import OrdersTable from "../components/tables/OrdersTable";
+import { theme } from "../themes";
 
 const OrdersPage: React.FC = () => {
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { t } = useTranslation();
   const { data: orders, isLoading } = useGetOrdersQuery();
 

@@ -1,6 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { BIG_GAP, MAIN_GAP, MAIN_PADDING, xs } from "../redux/app/constants";
+import { BIG_GAP, MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
 import usersIcon from "../assets/icons/users-icon.png";
 import storesIcon from "../assets/icons/stores-icon.png";
 import productsIcon from "../assets/icons/products-icon.png";
@@ -9,12 +9,16 @@ import sellersIcon from "../assets/icons/sellers-icons.png";
 import products2Icon from "../assets/icons/products2-icon.png";
 import ListTile from "../components/ListTile";
 import { useNavigate } from "react-router-dom";
+import { theme } from "../themes";
 
 const Dashboard = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
 
   return (
+    
     <Box height="100vh" width="100vw">
       <Box height="20%">
         <Typography variant="h3" p={MAIN_PADDING}>

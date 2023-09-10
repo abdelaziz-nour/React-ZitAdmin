@@ -4,16 +4,19 @@ import {
   useGetStoreProductsMutation,
 } from "../redux/features/apiSlice";
 import { useEffect, useState } from "react";
-import { Box, CircularProgress, Tab, Tabs, Typography } from "@mui/material";
-import { MAIN_PADDING, MAIN_GAP,xs } from "../redux/app/constants";
+import { Box, CircularProgress, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
+import { MAIN_PADDING, MAIN_GAP } from "../redux/app/constants";
 import { useTranslation } from "react-i18next";
 import StoreProductsTable from "../components/tables/StoreProductsTable";
 import SearchField from "../components/SearchField";
 import StoreCategoriesTable from "../components/tables/StoreCategoriesTable";
 import shoppingBagIcon from "../assets/icons/shopping-bag-icon.png";
 import categoryIcon from "../assets/icons/category-icon.png";
+import { theme } from "../themes";
 
 const StoreProductsPage = () => {
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { t } = useTranslation();
   const { storeId, storeName } = useParams();
 

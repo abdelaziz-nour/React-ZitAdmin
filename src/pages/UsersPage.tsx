@@ -1,14 +1,16 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
 import UsersTable from "../components/tables/UsersTable";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING ,xs} from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetUsersQuery } from "../redux/features/apiSlice";
 import { useState } from "react";
+import { theme } from "../themes";
 
 const UsersPage = () => {
   const { t } = useTranslation();
   const { data: users, isLoading } = useGetUsersQuery();
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [searchQuery, setSearchQuery] = useState("");
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

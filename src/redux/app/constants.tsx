@@ -1,5 +1,3 @@
-import { theme } from "../../themes";
-
 export const secretKey = "0123456789abcdef0123456789abcdef";
 export const BORDER_RADIUS = 3;
 export const MAIN_PADDING = 3;
@@ -9,7 +7,6 @@ export const SMALL_PADDING = 1;
 export const BIG_GAP = 3;
 export const HOST = "https://vzzoz.pythonanywhere.com";
 export const SIDEBAR_WIDTH = "13rem";
-export const xs = theme.breakpoints.down("xs");
 
 export interface LoginCredentials {
   username: string;

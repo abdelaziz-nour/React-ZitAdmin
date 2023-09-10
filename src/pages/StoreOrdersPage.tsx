@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { useGetStoreOrdersMutation } from "../redux/features/apiSlice";
-import { Box, Typography, CircularProgress } from "@mui/material";
+import { Box, Typography, CircularProgress, useMediaQuery } from "@mui/material";
 import SearchField from "../components/SearchField";
 import OrdersTable from "../components/tables/OrdersTable";
-import { MAIN_PADDING, MAIN_GAP ,xs} from "../redux/app/constants";
+import { MAIN_PADDING, MAIN_GAP } from "../redux/app/constants";
+import { theme } from "../themes";
 const StoreOrdersPage = () => {
+  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+
   const { t } = useTranslation();
   const { storeId, storeName } = useParams();
   const [getStoreOrders, { data: storeOrders, isLoading }] =

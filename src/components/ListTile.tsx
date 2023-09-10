@@ -26,7 +26,7 @@ const ListTile = ({ image, title, subtitle }: ListTileData) => {
     >
       <Box
         display="flex"
-        height="5rem"
+        minHeight="5rem"
         bgcolor={theme.palette.background.paper}
         borderRadius={BORDER_RADIUS}
         boxShadow={BOX_SHADOW}
@@ -37,7 +37,7 @@ const ListTile = ({ image, title, subtitle }: ListTileData) => {
           <Box
             width="25%"
             sx={{
-              height: "5rem",
+              minHeight: "5rem",
               width: "5rem",
               backgroundImage: `${image}`,
               backgroundSize: "contain",
@@ -46,7 +46,7 @@ const ListTile = ({ image, title, subtitle }: ListTileData) => {
             }}
           ></Box>
           <Box gap={MAIN_GAP}>
-            <Box height="50%" alignItems="center" display="flex">
+            <Box  alignItems="center" display="flex" >
               <Typography fontWeight="bold">{t(`${title}`)}</Typography>
             </Box>
             <Box height="50%">
