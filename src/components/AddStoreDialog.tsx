@@ -90,19 +90,15 @@ export default function AddStoreDialog() {
   const handleAddStore = async (event: React.FormEvent) => {
     event.preventDefault();
     if (selectedImage && selectedUser?.Email && storeName) {
-      console.log(selectedImage);
       try {
         const requestBody = {
           Image: selectedImage,
           Email: selectedUser?.Email,
           Name: storeName,
         };
-        console.log("body :", requestBody);
 
         const response = await addStore(requestBody);
-        console.log(response);
         if ("data" in response && response.data.success) {
-          console.log(response.data);
           setSuccessMessage(t("storeAddedSuccessfully"));
 
           setOpen(false);
@@ -131,7 +127,7 @@ export default function AddStoreDialog() {
         onClick={handleClickOpen}
         startIcon={
           <Box
-            color={theme.palette.text.secondary}
+            color='white'
             display="flex"
             alignItems="center"
           >

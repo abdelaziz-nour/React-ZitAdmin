@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 import UsersTable from "../components/tables/UsersTable";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING ,xs} from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetUsersQuery } from "../redux/features/apiSlice";
 import { useState } from "react";
@@ -11,9 +11,6 @@ const UsersPage = () => {
   const { data: users, isLoading } = useGetUsersQuery();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const filteredUsers = users?.data.filter((user) =>
-    user.UserName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
@@ -24,7 +21,7 @@ const UsersPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width="100vw"
+      width={xs?"75vw":"100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}
           >
@@ -44,7 +41,7 @@ const UsersPage = () => {
           <CircularProgress />
         </Box>
       ) : (
-        <UsersTable users={filteredUsers || []} />
+        <UsersTable users={users?.data || []}searchQuery={searchQuery} />
       )}
     </Box>
   );

@@ -146,6 +146,9 @@ const StoreProductsTable = ({ products }: StoreProductsTableProps) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          overflow:'hidden'
+        }}
       />
     </Paper>
   );

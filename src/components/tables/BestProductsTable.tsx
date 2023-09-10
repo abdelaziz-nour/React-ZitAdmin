@@ -150,6 +150,9 @@ const BestProductsTable = ({ products }: BestProductsTableProps) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          overflow:'hidden'
+        }}
       />
     </Paper>
   );

@@ -17,6 +17,7 @@ import BestSellersPage from "./pages/BestSellersPage";
 import BestProductsPage from "./pages/BestProductsPage";
 import StoreProductsPage from "./pages/StoreProductsPage";
 import StoreOrdersPage from "./pages/StoreOrdersPage";
+import PopsWay from "./pages/PopsWay";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/orderItems" element={<OrderedItemsPage />} />
                 <Route path="/best-sellers" element={<BestSellersPage />} />
                 <Route path="/best-products" element={<BestProductsPage />} />
+                <Route path="/pops" element={<PopsWay />} />
               </Route>
 
               <Route path="unauthorized" element={<UnAuthorizedPage />} />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING, xs } from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetBestProductsQuery } from "../redux/features/apiSlice";
 import BestProductsTable from "../components/tables/BestProductsTable";
@@ -25,7 +25,7 @@ const BestProductsPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width="100vw"
+      width={xs?"75vw":"100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3">{t("bestProducts")}</Typography>

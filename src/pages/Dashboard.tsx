@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { BIG_GAP, MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
+import { BIG_GAP, MAIN_GAP, MAIN_PADDING, xs } from "../redux/app/constants";
 import usersIcon from "../assets/icons/users-icon.png";
 import storesIcon from "../assets/icons/stores-icon.png";
 import productsIcon from "../assets/icons/products-icon.png";
@@ -17,23 +17,25 @@ const Dashboard = () => {
   return (
     <Box height="100vh" width="100vw">
       <Box height="20%">
-        <Typography
-          variant="h3"
-          p={MAIN_PADDING}
-        >
+        <Typography variant="h3" p={MAIN_PADDING}>
           {t("dashboard")}
         </Typography>
       </Box>
-      <Box display="flex" flexDirection="column" height="80%" gap={BIG_GAP}>
-        <Box display="flex" gap={MAIN_GAP} justifyContent="space-around">
-          <Box width="33%" onClick={() => navigate("/users")}>
+      <Box display="flex" flexDirection="column" height="80%" gap={xs?MAIN_GAP:BIG_GAP} p={xs?MAIN_PADDING:0}>
+        <Box
+          display="flex"
+          gap={MAIN_GAP}
+          justifyContent="space-around"
+          flexDirection={xs ? "column" : "row"}
+        >
+          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/users")}>
             <ListTile
               image={`url(${usersIcon})`}
               title="users"
               subtitle="manageUsersAndTheirStores"
             />
           </Box>
-          <Box width="33%" onClick={() => navigate("/stores")}>
+          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/stores")}>
             <ListTile
               image={`url(${storesIcon})`}
               title="stores"
@@ -42,15 +44,20 @@ const Dashboard = () => {
           </Box>
         </Box>
         {/* SECOND ROW */}
-        <Box display="flex" gap={MAIN_GAP} justifyContent="space-around">
-          <Box width="33%" onClick={() => navigate("/products")}>
+        <Box
+          display="flex"
+          gap={MAIN_GAP}
+          justifyContent="space-around"
+          flexDirection={xs ? "column" : "row"}
+        >
+          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/products")}>
             <ListTile
               image={`url(${productsIcon})`}
               title="products"
               subtitle="showsAllTheProductsInTheSystem"
             />
           </Box>
-          <Box width="33%" onClick={() => navigate("/orders")}>
+          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/orders")}>
             <ListTile
               image={`url(${ordersIcon})`}
               title="orders"
@@ -58,19 +65,21 @@ const Dashboard = () => {
             />
           </Box>
         </Box>
-        <Box display="flex" gap={MAIN_GAP} justifyContent="space-around">
-          <Box width="33%" onClick={() => navigate("/best-sellers")}>
+        <Box display="flex" gap={MAIN_GAP} justifyContent="space-around" 
+          flexDirection={xs ? "column" : "row"}
+          >
+          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/best-sellers")}>
             <ListTile
               image={`url(${sellersIcon})`}
               title="bestSellers"
-              subtitle="theMostOrderedStores"
+              subtitle="theMostOrderedStoresInThePast30Days"
             />
           </Box>
-          <Box width="33%" onClick={() => navigate("/best-products")}>
+          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/best-products")}>
             <ListTile
               image={`url(${products2Icon})`}
               title="bestProducts"
-              subtitle="theMostOrderedProducts"
+              subtitle="theMostOrderedProductsInThePast30Days"
             />
           </Box>
         </Box>

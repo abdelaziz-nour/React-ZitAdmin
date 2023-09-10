@@ -101,6 +101,9 @@ export const apiSlice = createApi({
         body: credentials,
       }),
     }),
+    getUsersPops: builder.mutation<GetUsersResponse, void>({
+      query: () => "getusers",
+    }),
   }),
 });
 
@@ -117,5 +120,6 @@ export const {
   useGetStoreCategoriesMutation,
   useGetStoreOrdersMutation,
   useDeleteStoreMutation,
+  useGetUsersPopsMutation,
 } = apiSlice;
 export default apiSlice.reducer;

@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 import StoreCard from "../components/StoreCard";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING ,xs} from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetStoresQuery } from "../redux/features/apiSlice";
 import AddStoreDialog from "../components/AddStoreDialog";
@@ -11,14 +11,20 @@ const StoresPage = () => {
   const { t } = useTranslation();
   const { data: stores, isLoading } = useGetStoresQuery();
 
-  const storeChunks = stores
+  const storeChunks = xs?
+  stores
+    ? Array.from({ length: Math.ceil(stores.data.length / 1) }, (_, index) =>
+        stores.data.slice(index * 1, index * 1 + 1)
+      )
+    : []
+  :stores
     ? Array.from({ length: Math.ceil(stores.data.length / 4) }, (_, index) =>
         stores.data.slice(index * 4, index * 4 + 4)
       )
     : [];
   return (
-    <Box display="flex" flexDirection="column" height="100vh" width="100vw">
-      <Box height="20%">
+    <Box display="flex" flexDirection="column" height={xs?"100%":"100vh"} width={xs?"85vw":"100vw"}>
+      <Box height="20%" >
         <Typography
           variant="h3"
           p={MAIN_PADDING}
@@ -30,6 +36,7 @@ const StoresPage = () => {
           display="flex"
           gap={MAIN_GAP}
           justifyContent="space-between"
+          flexDirection={xs?'column':'row'}
         >
           <SearchField />
           <Box display="flex" gap={MAIN_GAP}>

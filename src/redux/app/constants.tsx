@@ -1,3 +1,5 @@
+import { theme } from "../../themes";
+
 export const secretKey = "0123456789abcdef0123456789abcdef";
 export const BORDER_RADIUS = 3;
 export const MAIN_PADDING = 3;
@@ -6,7 +8,8 @@ export const MAIN_GAP = 1;
 export const SMALL_PADDING = 1;
 export const BIG_GAP = 3;
 export const HOST = "https://vzzoz.pythonanywhere.com";
-export const SIDEBAR_WIDTH='13rem'
+export const SIDEBAR_WIDTH = "13rem";
+export const xs = theme.breakpoints.down("xs");
 
 export interface LoginCredentials {
   username: string;
@@ -48,7 +51,7 @@ export interface OrderData {
   Location: string;
   CreatedBy: string;
   CreatedOn: string;
-  OrderItems:Array<OrderedItemsData>;
+  OrderItems: Array<OrderedItemsData>;
   Total: number;
 }
 export interface BestSellerData {
@@ -97,6 +100,7 @@ export interface GetStoresResponse {
 }
 export interface UsersTableProps {
   users: UserData[];
+  searchQuery:string
 }
 export interface ProductsTableProps {
   products: ProductData[];
@@ -115,6 +119,8 @@ export interface StoreCategoriesTableProps {
 }
 export interface OrdersTableProps {
   orders: OrderData[];
+  searchQuery:string;
+  storeColumn: boolean;
 }
 export interface OrderedItemsPageProps {
   orderedItems: OrderedItemsData[];
@@ -173,3 +179,24 @@ export interface DeleteStoreResponse {
   success: boolean;
   message: string | null;
 }
+export interface StatusFilterForm {
+  status: string;
+}
+export interface UsersExportOptions {
+  username: boolean|null;
+  email: boolean|null;
+  store: boolean|null;
+  storeId: boolean|null;
+  status: boolean|null;
+}
+export interface OrdersExportOptions {
+  id: boolean;
+  orderedBy: boolean;
+  orderDate: boolean;
+  status: boolean;
+  total: boolean;
+  orderedItems: boolean;
+  store?: boolean;
+
+}
+

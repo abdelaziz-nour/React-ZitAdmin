@@ -86,6 +86,9 @@ const StoreCategoriesTable = ({ categories }: StoreCategoriesTableProps) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          overflow:'hidden'
+        }}
       />
     </Paper>
   );

@@ -131,6 +131,9 @@ export default function BestSellersTable({ sellers }: BestSellersTableProps) {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          overflow:'hidden'
+        }}
       />
     </Paper>
   );

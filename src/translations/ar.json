@@ -21,9 +21,9 @@
   "orders": "الطلبات",
   "displayAllTheUsersOrders": "جميع طلبات السمتخدمين",
   "bestSellers": "أفضل البائعين",
-  "theMostOrderedStores": "أفضل المتاجر من حيث الطلبات",
+  "theMostOrderedStoresInThePast30Days": "أفضل المتاجر من طلباً في اخر 30 يوم",
   "bestProducts": "أفضل المنتجات",
-  "theMostOrderedProducts": "أفضل المنتجات من حيث الطلبات",
+  "theMostOrderedProductsInThePast30Days": "أفضل المنتجات طلباً في اخر 30 يوم",
 
 
 
@@ -34,6 +34,16 @@
   "status": "الحالة",
   "active": "نشط",
   "banned": "محظور",
+
+  "export": "تصدير",
+  "filter": "فلترة",
+  "options": "الخيارات",
+  "all": "الكل",
+  "selected": "تم تحديده",
+  "applyFilter": "تطبيق الفلتر",
+  "exportOptions": "خيارات التصدير",
+  "chooseFormat": "اختر الصيغة",
+
 
 
 

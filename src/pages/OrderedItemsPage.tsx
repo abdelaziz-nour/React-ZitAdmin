@@ -10,7 +10,6 @@ import OrderedItemsTable from "../components/tables/OrderedItemsTable";
 const OrderedItemsPage = () => {
   const { t } = useTranslation();
   const items = useSelector((state: RootState) => state.orderItems.items);
-  console.log(items);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const filteredItems = items?.filter((item) =>
     item.id?.toLowerCase().includes(searchQuery.toLowerCase())

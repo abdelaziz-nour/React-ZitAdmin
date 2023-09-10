@@ -5,7 +5,7 @@ import { useGetStoreOrdersMutation } from "../redux/features/apiSlice";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import SearchField from "../components/SearchField";
 import OrdersTable from "../components/tables/OrdersTable";
-import { MAIN_PADDING, MAIN_GAP } from "../redux/app/constants";
+import { MAIN_PADDING, MAIN_GAP ,xs} from "../redux/app/constants";
 const StoreOrdersPage = () => {
   const { t } = useTranslation();
   const { storeId, storeName } = useParams();
@@ -35,7 +35,7 @@ const StoreOrdersPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width="100vw"
+      width={xs ?"75vw":"100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3" textAlign="center">
@@ -65,7 +65,7 @@ const StoreOrdersPage = () => {
         </Box>
       ) : (
         <Box>
-          <OrdersTable orders={filteredOrders || []} />
+          <OrdersTable orders={filteredOrders || []} storeColumn={false} searchQuery={searchQuery} />
         </Box>
       )}
     </Box>

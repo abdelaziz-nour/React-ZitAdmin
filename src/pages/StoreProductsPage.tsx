@@ -5,7 +5,7 @@ import {
 } from "../redux/features/apiSlice";
 import { useEffect, useState } from "react";
 import { Box, CircularProgress, Tab, Tabs, Typography } from "@mui/material";
-import { MAIN_PADDING, MAIN_GAP } from "../redux/app/constants";
+import { MAIN_PADDING, MAIN_GAP,xs } from "../redux/app/constants";
 import { useTranslation } from "react-i18next";
 import StoreProductsTable from "../components/tables/StoreProductsTable";
 import SearchField from "../components/SearchField";
@@ -57,7 +57,6 @@ const StoreProductsPage = () => {
     }
   }, [getStoreProducts, getStoreCategories, storeId]);
 
-  console.log(storeCategories);
 
   return (
     <Box
@@ -66,7 +65,7 @@ const StoreProductsPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width="100vw"
+      width={xs?"75vw":"100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3" textAlign="center">

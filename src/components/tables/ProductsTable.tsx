@@ -132,6 +132,9 @@ export default function ProductsTable({ products }: ProductsTableProps) {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          overflow:'hidden'
+        }}
       />
     </Paper>
   );

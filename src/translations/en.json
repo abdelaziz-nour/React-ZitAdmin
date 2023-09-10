@@ -21,9 +21,9 @@
   "orders": "Orders",
   "displayAllTheUsersOrders": "Display all the users orders",
   "bestSellers": "Best sellers",
-  "theMostOrderedStores": "The most ordered stores",
+  "theMostOrderedStoresInThePast30Days": "The most ordered stores in the past 30 days",
   "bestProducts": "Best products",
-  "theMostOrderedProducts": "The most ordered products",
+  "theMostOrderedProductsInThePast30Days": "The most ordered products in the past 30 days",
 
 
 
@@ -31,9 +31,17 @@
   "email": "Email",
   "storeName": "Store name",
   "storeId": "Store ID",
-  "status": "Status",
   "active": "Active",
   "banned": "Banned",
+
+  "export": "Export",
+  "filter": "Filter",
+  "options": "Options",
+  "all": "All",
+  "selected": "Selected",
+  "applyFilter": "Apply Filter",
+  "exportOptions": "Export Options",
+  "chooseFormat": "Choose   Format",
 
 
 

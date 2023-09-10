@@ -83,12 +83,9 @@ export default function DeleteStoreDialog() {
         const requestBody = {
           Store: selectedUser?.StoreID,
         };
-        console.log("body :", requestBody);
 
         const response = await deleteStore(requestBody);
-        console.log(response);
         if ("data" in response && response.data.success) {
-          console.log(response.data);
           setSuccessMessage(t("storeDeletedSuccessfully"));
           setOpen(false);
         }
@@ -117,8 +114,8 @@ export default function DeleteStoreDialog() {
         sx={{ bgcolor: "red" }}
         startIcon={
           <Box
-            color={theme.palette.text.secondary}
-            display="flex"
+          color='white'
+          display="flex"
             alignItems="center"
           >
             <Delete />

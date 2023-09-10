@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import {  DashboardRounded } from "@mui/icons-material";
+import { DashboardRounded } from "@mui/icons-material";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
@@ -25,7 +25,7 @@ import productsIcon from "../assets/icons/products-icon.png";
 import ordersIcon from "../assets/icons/orders-icon.png";
 import sellersIcon from "../assets/icons/sellers-icons.png";
 import products2Icon from "../assets/icons/products2-icon.png";
-import { SIDEBAR_WIDTH } from "../redux/app/constants";
+import { SIDEBAR_WIDTH, xs } from "../redux/app/constants";
 
 type Props = {
   icon: React.ReactElement;
@@ -34,14 +34,13 @@ type Props = {
 };
 
 const CListItem = ({ icon, text, to }: Props) => {
-  const {  i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logoutuser = async () => {
     dispatch(logout());
-    console.log("logout");
     navigate("/");
   };
 
@@ -69,7 +68,7 @@ const CListItem = ({ icon, text, to }: Props) => {
         <ListItemButton
           onClick={handleClick}
           sx={{
-            display:'flex',
+            display: "flex",
             color: "text.primary",
             opacity: location.pathname
               .toLowerCase()
@@ -84,7 +83,7 @@ const CListItem = ({ icon, text, to }: Props) => {
           }}
         >
           <Stack
-            direction= "row"
+            direction="row"
             spacing={0}
             sx={{
               display: "flex",
@@ -93,33 +92,38 @@ const CListItem = ({ icon, text, to }: Props) => {
             }}
           >
             {icon}
-            <ListItemText
-              primary={text}
-              sx={{
-                paddingX: 1,
-              }}
-            />
+            {!xs && (
+              <ListItemText
+                primary={text}
+                sx={{
+                  paddingX: 1,
+                }}
+              />
+            )}
           </Stack>
         </ListItemButton>
       </ListItem>
     </>
   );
 };
-
 const Sidebar = () => {
   const { t, i18n } = useTranslation();
   return (
     <Drawer
       variant="permanent"
       sx={{
-        width: SIDEBAR_WIDTH,
-        ">.css-1218q3a-MuiPaper-root-MuiDrawer-paper": { position: "relative" },
+        width:xs?'4rem': SIDEBAR_WIDTH,
+      }}
+      PaperProps={{
+        sx: {
+          position: "relative",
+        },
       }}
     >
       <Paper
         sx={{
           height: "100vh",
-          width: SIDEBAR_WIDTH,
+          width:xs?'4rem': SIDEBAR_WIDTH,
           overflowY: "hidden",
         }}
       >
@@ -127,12 +131,12 @@ const Sidebar = () => {
           sx={{
             marginX: 0,
             paddingX: 0,
-            width: SIDEBAR_WIDTH,
+            width:xs?'4rem': SIDEBAR_WIDTH,
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <Box
+          {!xs&&<Box
             sx={{
               height: "7rem",
               width: "7rem",
@@ -141,7 +145,7 @@ const Sidebar = () => {
               backgroundRepeat: "no-repeat",
               alignSelf: "center",
             }}
-          ></Box>
+          ></Box>}
           <Divider />
           <CListItem
             icon={<DashboardRounded sx={{ color: "primary.main" }} />}
