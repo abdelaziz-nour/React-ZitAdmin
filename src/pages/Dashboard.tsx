@@ -1,4 +1,4 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { BIG_GAP, MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
 import usersIcon from "../assets/icons/users-icon.png";
