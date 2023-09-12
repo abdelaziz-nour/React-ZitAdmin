@@ -1,26 +1,58 @@
 import React, { useState } from "react";
-import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
+import {
+  MAIN_GAP,
+  MAIN_PADDING,
+  SMALL_SCREEN_CONTENT_WIDTH,
+} from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetOrdersQuery } from "../redux/features/apiSlice";
 import OrdersTable from "../components/tables/OrdersTable";
-import { theme } from "../themes";
+import { lightTheme } from "../themes";
 
 const OrdersPage: React.FC = () => {
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
-
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTK Queries
+   */
   const { data: orders, isLoading } = useGetOrdersQuery();
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
+  const total = orders?.data[orders.data.length - 1].Total;
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
   const filteredOrders = orders?.data.filter((order) =>
     order.id?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
-  const total = orders?.data[orders.data.length - 1].Total;
+
   return (
     <Box
       p={MAIN_PADDING}
@@ -28,12 +60,24 @@ const OrdersPage: React.FC = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width={xs?"75vw":"100vw"}
+      width={xs ? SMALL_SCREEN_CONTENT_WIDTH : "100vw"}
+      sx={{
+        overflowX: "hidden",
+      }}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3">{t("orders")}</Typography>
-        <Box display="flex" gap={MAIN_GAP} justifyContent="space-between">
-          <SearchField value={searchQuery} onChange={handleSearchChange} />
+        <Box
+          display="flex"
+          gap={MAIN_GAP}
+          justifyContent="space-between"
+          flexWrap="wrap"
+        >
+          <SearchField
+            value={searchQuery}
+            onChange={handleSearchChange}
+            width={xs && "100%"}
+          />
           <Box>
             <Typography fontWeight="bold" variant="h6">
               {t("totalZITOrders")}
@@ -56,7 +100,11 @@ const OrdersPage: React.FC = () => {
         </Box>
       ) : (
         <Box>
-          <OrdersTable orders={filteredOrders || []}searchQuery={searchQuery} storeColumn={true} />
+          <OrdersTable
+            orders={filteredOrders || []}
+            searchQuery={searchQuery}
+            storeColumn={true}
+          />
         </Box>
       )}
     </Box>

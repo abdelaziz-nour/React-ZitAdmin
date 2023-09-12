@@ -94,11 +94,11 @@ const UsersExportMenu = ({ handleExport }: ExportMenuProps) => {
     storeId: true,
     status: true,
   });
+  
   /**
    * --------------------------------------------------------------------------------------------------
    * Handlers
    */
-
   const handleSelectChange = (event: SelectChangeEvent) => {
     setExportType(event.target.value);
   };

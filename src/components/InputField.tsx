@@ -7,25 +7,28 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { theme } from "../themes";
+import { lightTheme } from "../themes";
 
 const InputField = ({
   text,
   withLabel,
   bgColor,
   value,
-  onChange
+  onChange,
 }: {
   text: string;
   withLabel?: boolean;
   bgColor?: string;
   value?: string;
   onChange?: (event: any) => void;
-
 }) => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
 
-   const BootstrapInput = bgColor
+  const BootstrapInput = bgColor
     ? styled(InputBase)(({ theme }) => ({
         "label + &": {
           marginTop: theme.spacing(3),
@@ -106,8 +109,12 @@ const InputField = ({
   return (
     <FormControl variant="standard" fullWidth>
       {withLabel ?? (
-        <InputLabel shrink htmlFor="bootstrap-input" sx={{width:'100%'}}>
-          <Typography variant="h6" fontWeight="bold" color={theme.palette.text.primary}>
+        <InputLabel shrink htmlFor="bootstrap-input" sx={{ width: "100%" }}>
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            color={lightTheme.palette.text.primary}
+          >
             {t(text)}
           </Typography>
         </InputLabel>
@@ -118,15 +125,14 @@ const InputField = ({
           id="bootstrap-input"
           type={text.includes("password") ? "password" : "text"}
           value={value}
-          onChange={onChange} 
-
+          onChange={onChange}
         />
       ) : (
         <BootstrapInput
           placeholder={`Enter ${text}`}
           id="bootstrap-input"
           type={text.includes("Password") ? "password" : "text"}
-          onChange={onChange} 
+          onChange={onChange}
         />
       )}
     </FormControl>

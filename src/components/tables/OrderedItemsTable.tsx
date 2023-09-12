@@ -12,14 +12,26 @@ import { OrderedItemsPageProps } from "../../redux/app/constants";
 import { useTranslation } from "react-i18next";
 
 const OrderedItemsTable = ({ orderedItems }: OrderedItemsPageProps) => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {

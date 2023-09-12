@@ -7,7 +7,7 @@ export const SMALL_PADDING = 1;
 export const BIG_GAP = 3;
 export const HOST = "https://vzzoz.pythonanywhere.com";
 export const SIDEBAR_WIDTH = "13rem";
-
+export const SMALL_SCREEN_CONTENT_WIDTH="85vw"
 export interface LoginCredentials {
   username: string;
   password: string;
@@ -194,6 +194,5 @@ export interface OrdersExportOptions {
   total: boolean;
   orderedItems: boolean;
   store?: boolean;
-
 }
 

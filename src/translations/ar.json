@@ -4,12 +4,15 @@
   "password": "كلمة المرور",
   "login": "دخول",
   "contact": "تواصل معنا",
+  "wrongEmailOrPassword": "خطأ في اسم المستخدم او كلمة المرور",
+
 
 
   "dashboard": "الرئيسية",
   "language": "اللغة",
   "logout": "تسجيل الخروج",
-
+  "welcomeBack": "مرحباً بعودتك",
+  "pleaseSelectATab": "الرجاء إختيار قائمة",
 
 
   "users": "المستخدمين",
@@ -34,6 +37,8 @@
   "status": "الحالة",
   "active": "نشط",
   "banned": "محظور",
+  "darkMode": "الوضع الليلي",
+
 
   "export": "تصدير",
   "filter": "فلترة",
@@ -86,6 +91,7 @@
   "pleaseProvideTheStore": "الرجاء اختيار المتجر",
   "storeNameNotMatched": "إسم المتجر المدخل غير مطابق لإسم المتجر المراد حذفه",
   "orderItems":"المنتجات المطلوبة",
+  "orderedItems":"منتجات الطلب",
 
 
 
@@ -101,6 +107,7 @@
   "quantity": "الكمية",
   "subtotal": "سعر الكمية",
   "theTotal": "المجموع",
+  "total": "المجموع",
 
 
 

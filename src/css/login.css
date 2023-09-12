@@ -218,13 +218,13 @@ a.ssolink {
   content: "";
   position: absolute;
   z-index: 1;
-  top: 40px;
-  left: 115px;
-  width: 6px;
-  height: 6px;
+  top: 7px;
+  left: 110px;
+  width: 5px;
+  height: 5px;
   background: black;
-  border-radius: 50%;
-  animation: dotMove 1800ms cubic-bezier(0.25, 0.25, 0.25, 0.25) infinite;
+  border-radius: 100%;
+  animation: dotMove 1800ms cubic-bezier(0.25, 0.50, 0.25, 0.25) infinite;
 }
 
 /* Letters */
@@ -232,8 +232,8 @@ a.ssolink {
   display: inline-block;
   position: relative;
   color: black;
-  font-size: 40px;
-  letter-spacing: 8px;
+  font-size: 50px;
+  letter-spacing: 9.5px;
 }
 
 .loading-text .letter:nth-child(1) {

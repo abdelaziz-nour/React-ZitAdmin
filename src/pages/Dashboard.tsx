@@ -1,6 +1,6 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { BIG_GAP, MAIN_GAP, MAIN_PADDING } from "../redux/app/constants";
+import { BIG_GAP, MAIN_GAP, MAIN_PADDING, SMALL_SCREEN_CONTENT_WIDTH } from "../redux/app/constants";
 import usersIcon from "../assets/icons/users-icon.png";
 import storesIcon from "../assets/icons/stores-icon.png";
 import productsIcon from "../assets/icons/products-icon.png";
@@ -9,23 +9,41 @@ import sellersIcon from "../assets/icons/sellers-icons.png";
 import products2Icon from "../assets/icons/products2-icon.png";
 import ListTile from "../components/ListTile";
 import { useNavigate } from "react-router-dom";
-import { theme } from "../themes";
+import { lightTheme } from "../themes";
 
 const Dashboard = () => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Hooks
+   */
+  const navigate = useNavigate();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
 
   return (
-    
-    <Box height="100vh" width="100vw">
+    <Box height="100vh" width={xs ?SMALL_SCREEN_CONTENT_WIDTH:"100vw"}>
       <Box height="20%">
         <Typography variant="h3" p={MAIN_PADDING}>
           {t("dashboard")}
         </Typography>
       </Box>
-      <Box display="flex" flexDirection="column" height="80%" gap={xs?MAIN_GAP:BIG_GAP} p={xs?MAIN_PADDING:0}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        height="80%"
+        gap={xs ? MAIN_GAP : BIG_GAP}
+        p={xs ? MAIN_PADDING : 0}
+      >
         <Box
           display="flex"
           gap={MAIN_GAP}
@@ -54,7 +72,10 @@ const Dashboard = () => {
           justifyContent="space-around"
           flexDirection={xs ? "column" : "row"}
         >
-          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/products")}>
+          <Box
+            width={xs ? "100%" : "33%"}
+            onClick={() => navigate("/products")}
+          >
             <ListTile
               image={`url(${productsIcon})`}
               title="products"
@@ -69,17 +90,26 @@ const Dashboard = () => {
             />
           </Box>
         </Box>
-        <Box display="flex" gap={MAIN_GAP} justifyContent="space-around" 
+        <Box
+          display="flex"
+          gap={MAIN_GAP}
+          justifyContent="space-around"
           flexDirection={xs ? "column" : "row"}
+        >
+          <Box
+            width={xs ? "100%" : "33%"}
+            onClick={() => navigate("/best-sellers")}
           >
-          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/best-sellers")}>
             <ListTile
               image={`url(${sellersIcon})`}
               title="bestSellers"
               subtitle="theMostOrderedStoresInThePast30Days"
             />
           </Box>
-          <Box width={xs ? "100%" : "33%"} onClick={() => navigate("/best-products")}>
+          <Box
+            width={xs ? "100%" : "33%"}
+            onClick={() => navigate("/best-products")}
+          >
             <ListTile
               image={`url(${products2Icon})`}
               title="bestProducts"

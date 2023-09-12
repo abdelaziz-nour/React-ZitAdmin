@@ -16,7 +16,6 @@ import {
   InputBase,
   InputLabel,
 } from "@mui/material";
-import { theme } from "../themes";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import {
@@ -49,36 +48,57 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 10,
     position: "relative",
-    backgroundColor: theme.palette.mode === "light" ? "#ffffff" : "#1A2027",
     border: "1px solid",
-    borderColor: theme.palette.mode === "light" ? "#E0E3E7" : "#2D3843",
     width: "100%",
     padding: "10px 12px",
   },
 }));
 export default function DeleteStoreDialog() {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTK Queries
+   */
   const { data: usersData } = useGetUsersQuery();
   const [deleteStore, { isLoading }] = useDeleteStoreMutation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
   const [open, setOpen] = useState(false);
   const [storeName, setStoreName] = useState("");
   const [selectedUser, setSelectedUser] = useState<UserData>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const filteredUsers =
     usersData?.data.filter(
       (user: UserData) => user.Store !== "None" && user.StoreDeletion !== true
     ) || [];
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleDeleteStore = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (selectedUser?.Store && storeName&& selectedUser?.Store===storeName) {
+    if (selectedUser?.Store && storeName && selectedUser?.Store === storeName) {
       try {
         const requestBody = {
           Store: selectedUser?.StoreID,
@@ -113,11 +133,7 @@ export default function DeleteStoreDialog() {
         onClick={handleClickOpen}
         sx={{ bgcolor: "red" }}
         startIcon={
-          <Box
-          color='white'
-          display="flex"
-            alignItems="center"
-          >
+          <Box color="white" display="flex" alignItems="center">
             <Delete />
           </Box>
         }
@@ -167,12 +183,7 @@ export default function DeleteStoreDialog() {
                 htmlFor="bootstrap-input"
                 sx={{ width: "100%" }}
               >
-                <Typography
-                  fontWeight="bold"
-                  color={theme.palette.text.primary}
-                >
-                  {t("storeName")}
-                </Typography>
+                <Typography fontWeight="bold">{t("storeName")}</Typography>
               </InputLabel>
 
               <BootstrapInput

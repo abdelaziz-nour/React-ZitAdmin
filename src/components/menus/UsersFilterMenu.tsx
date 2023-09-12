@@ -15,7 +15,6 @@ import FilterAltOutlined from "@mui/icons-material/FilterAltOutlined";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import SubmitButton from "../SubmitButton";
-import {theme} from '../../themes'
 import { StatusFilterForm } from "../../redux/app/constants";
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -144,11 +143,10 @@ const UsersFilterMenu = ({ handleFilter }: FilterMenuProps) => {
                     display: "flex",
                     position: "static",
                     mb: "1rem",
-                    ml: "-1rem",
                     left: "0",
                   }}
                 >
-                  <Typography variant="h5" fontWeight="bold" color={theme.palette.text.primary}>
+                  <Typography variant="h5" fontWeight="bold" >
                     {t("status")}
                   </Typography>
                 </InputLabel>

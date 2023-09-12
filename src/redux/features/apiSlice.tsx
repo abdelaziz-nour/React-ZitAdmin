@@ -16,13 +16,15 @@ import {
   DeleteStoreResponse,
 } from "../app/constants";
 import CryptoJS from "crypto-js";
+import { RootState } from "../app/store";
 
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://vzzoz.pythonanywhere.com",
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token") || null;
+    prepareHeaders: (headers,{getState}) => {
+      const state = getState() as RootState;
+      const token = state.auth.token;
       if (token) {
         const decryptedBytes = CryptoJS.AES.decrypt(token, secretKey);
         const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);

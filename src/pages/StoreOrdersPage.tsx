@@ -2,34 +2,65 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { useGetStoreOrdersMutation } from "../redux/features/apiSlice";
-import { Box, Typography, CircularProgress, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  useMediaQuery,
+} from "@mui/material";
 import SearchField from "../components/SearchField";
 import OrdersTable from "../components/tables/OrdersTable";
-import { MAIN_PADDING, MAIN_GAP } from "../redux/app/constants";
-import { theme } from "../themes";
+import { MAIN_PADDING, MAIN_GAP, SMALL_SCREEN_CONTENT_WIDTH } from "../redux/app/constants";
+import { lightTheme } from "../themes";
 const StoreOrdersPage = () => {
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
-
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
-  const { storeId, storeName } = useParams();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTK Queries
+   */
   const [getStoreOrders, { data: storeOrders, isLoading }] =
     useGetStoreOrdersMutation();
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
+  const { storeId, storeName } = useParams();
+  const total = storeOrders?.data[storeOrders.data.length - 1].Total;
   const filteredOrders = storeOrders?.data.filter((order) =>
     order.id?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * useEffects
+   */
+
   useEffect(() => {
     if (storeId) {
       const requestBody = { Store: storeId };
       getStoreOrders(requestBody);
     }
   }, [getStoreOrders, storeId]);
-
-  const total = storeOrders?.data[storeOrders.data.length - 1].Total;
 
   return (
     <Box
@@ -38,14 +69,23 @@ const StoreOrdersPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width={xs ?"75vw":"100vw"}
+      width={xs ? SMALL_SCREEN_CONTENT_WIDTH : "100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3" textAlign="center">
           {storeName}
         </Typography>
-        <Box display="flex" gap={MAIN_GAP} justifyContent="space-between">
-          <SearchField value={searchQuery} onChange={handleSearchChange} />
+        <Box
+          display="flex"
+          gap={MAIN_GAP}
+          justifyContent="space-between"
+          flexWrap="wrap"
+        >
+          <SearchField
+            value={searchQuery}
+            onChange={handleSearchChange}
+            width={xs && "100%"}
+          />
           <Box>
             <Typography fontWeight="bold" variant="h6">
               {t("totalStoreOrders")}
@@ -68,7 +108,11 @@ const StoreOrdersPage = () => {
         </Box>
       ) : (
         <Box>
-          <OrdersTable orders={filteredOrders || []} storeColumn={false} searchQuery={searchQuery} />
+          <OrdersTable
+            orders={filteredOrders || []}
+            storeColumn={false}
+            searchQuery={searchQuery}
+          />
         </Box>
       )}
     </Box>

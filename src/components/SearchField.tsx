@@ -8,21 +8,28 @@ import { useTranslation } from "react-i18next";
 interface SearchFieldProps {
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  width?:any
 }
 
-const SearchField: React.FC<SearchFieldProps> = ({ value, onChange }) => { 
+const SearchField: React.FC<SearchFieldProps> = ({ value, onChange,width }) => { 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const {t} = useTranslation()
   return (
     <Paper
       component="form"
-      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: '33%' }}
+      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width:width?width: '33%' }}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
+        
         placeholder={t("search")}
         inputProps={{ "aria-label": "search google maps" }}
         value={value} 
-        onChange={onChange} 
+        onChange={onChange}
+         
       />
       <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
         <SearchIcon />

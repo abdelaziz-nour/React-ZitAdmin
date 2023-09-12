@@ -16,7 +16,6 @@ import {
   InputBase,
   InputLabel,
 } from "@mui/material";
-import { theme } from "../themes";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import {
@@ -36,7 +35,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-
 const StyledAutocomplete = styled(Autocomplete)(() => ({
   "& .MuiInputBase-root": {
     borderRadius: "10px",
@@ -45,7 +43,6 @@ const StyledAutocomplete = styled(Autocomplete)(() => ({
 const HiddenInput = styled("input")({
   display: "none",
 });
-
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
@@ -53,25 +50,48 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 10,
     position: "relative",
-    backgroundColor: theme.palette.mode === "light" ? "#ffffff" : "#1A2027",
     border: "1px solid",
-    borderColor: theme.palette.mode === "light" ? "#E0E3E7" : "#2D3843",
+    borderColor: "grey[500]",
     width: "100%",
     padding: "10px 12px",
   },
 }));
 export default function AddStoreDialog() {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTK Queries
+   */
   const { data: usersData } = useGetUsersQuery();
   const [addStore, { isLoading }] = useAddStoreMutation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [storeName, setStoreName] = useState("");
   const [selectedUser, setSelectedUser] = useState<UserData>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const filteredUsers =
     usersData?.data.filter((user: UserData) => user.Store === "None") || [];
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -86,7 +106,6 @@ export default function AddStoreDialog() {
       setSelectedImage(null);
     }
   };
-
   const handleAddStore = async (event: React.FormEvent) => {
     event.preventDefault();
     if (selectedImage && selectedUser?.Email && storeName) {
@@ -126,11 +145,7 @@ export default function AddStoreDialog() {
         variant="contained"
         onClick={handleClickOpen}
         startIcon={
-          <Box
-            color='white'
-            display="flex"
-            alignItems="center"
-          >
+          <Box color="white" display="flex" alignItems="center">
             <Add />
           </Box>
         }
@@ -165,8 +180,12 @@ export default function AddStoreDialog() {
             <Typography fontWeight="bold">{t("selectUser")}</Typography>
             <StyledAutocomplete
               options={filteredUsers}
-              getOptionLabel={(option: unknown) => (option as UserData).UserName}
-              onChange={(event, newValue) => setSelectedUser(newValue as UserData)}
+              getOptionLabel={(option: unknown) =>
+                (option as UserData).UserName
+              }
+              onChange={(event, newValue) =>
+                setSelectedUser(newValue as UserData)
+              }
               renderInput={(params) => (
                 <TextField placeholder={t("chooseAUser")} {...params} />
               )}
@@ -180,7 +199,6 @@ export default function AddStoreDialog() {
               >
                 <Typography
                   fontWeight="bold"
-                  color={theme.palette.text.primary}
                 >
                   {t("storeName")}
                 </Typography>

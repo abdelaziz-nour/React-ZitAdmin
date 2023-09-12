@@ -459,6 +459,16 @@ const OrdersTable = ({
       hour12: true,
     });
 
+    const headerText = "Zit Report"; // Replace with your desired header text
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const fontSize = 12; // Adjust the font size as needed
+    const textWidth =
+      (doc.getStringUnitWidth(headerText) * fontSize) /
+      doc.internal.scaleFactor;
+    const xPosition = (pageWidth - textWidth) / 2;
+    const headerYPosition = 15; // Adjust the Y position as needed
+
+    doc.text(headerText, xPosition, headerYPosition);
     // Add a title for the table
     const tableTitle = `${formattedDate} ${formattedTime}\n\nOrders Report`;
     const totalSum = rows
@@ -467,7 +477,7 @@ const OrdersTable = ({
     const totalSumRow = ["Total Sum", "", "", "", `${totalSum.toFixed(2)} SDG`]; // Adjust column count as needed
     rows.push(totalSumRow);
     // Set up the y-coordinate for the table
-    let yPosition = 15;
+    let yPosition = 20;
 
     // Add the title to the PDF
     doc.text(tableTitle, 10, yPosition);

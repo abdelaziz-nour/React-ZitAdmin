@@ -22,22 +22,39 @@ import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
 
 const StoreProductsTable = ({ products }: StoreProductsTableProps) => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const isExpanded = (productId: string) => expandedId === productId;
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
   const handleExpand = (productId: string) => {
     if (expandedId === productId) {
       setExpandedId(null);
@@ -147,7 +164,7 @@ const StoreProductsTable = ({ products }: StoreProductsTableProps) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
-          overflow:'hidden'
+          overflow: "hidden",
         }}
       />
     </Paper>

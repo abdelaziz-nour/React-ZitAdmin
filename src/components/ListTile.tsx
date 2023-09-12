@@ -1,5 +1,5 @@
-import { KeyboardArrowRight } from "@mui/icons-material";
-import { Box, Stack, Typography } from "@mui/material";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import {
   BORDER_RADIUS,
   BOX_SHADOW,
@@ -7,12 +7,21 @@ import {
   MAIN_GAP,
   ListTileData,
 } from "../redux/app/constants";
-import { theme } from "../themes";
 import { useTranslation } from "react-i18next";
 
 const ListTile = ({ image, title, subtitle }: ListTileData) => {
-  const { t } = useTranslation();
-  
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
+  const { t, i18n } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Hooks
+   */
+  const theme = useTheme();
+
   return (
     <Stack
       sx={{
@@ -46,7 +55,7 @@ const ListTile = ({ image, title, subtitle }: ListTileData) => {
             }}
           ></Box>
           <Box gap={MAIN_GAP}>
-            <Box  alignItems="center" display="flex" >
+            <Box alignItems="center" display="flex">
               <Typography fontWeight="bold">{t(`${title}`)}</Typography>
             </Box>
             <Box height="50%">
@@ -60,7 +69,11 @@ const ListTile = ({ image, title, subtitle }: ListTileData) => {
           justifyContent="center"
           alignItems="center"
         >
-          <KeyboardArrowRight sx={{ height: "2rem", width: "2rem" }} />
+          {i18n.language === "en" ? (
+            <KeyboardArrowRight sx={{ height: "2rem", width: "2rem" }} />
+          ) : (
+            <KeyboardArrowLeft sx={{ height: "2rem", width: "2rem" }} />
+          )}
         </Box>
       </Box>
     </Stack>

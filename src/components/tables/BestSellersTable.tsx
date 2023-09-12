@@ -16,48 +16,63 @@ import {
   BestSellersTableProps,
 } from "../../redux/app/constants";
 
+interface Column {
+  id: "Image" | "id" | "Name" | "Owner" | "OrdersCount";
+  label: any;
+  minWidth?: number;
+}
 export default function BestSellersTable({ sellers }: BestSellersTableProps) {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
 
-  interface Column {
-    id: "Image" | "id" | "Name" | "Owner" | "OrdersCount";
-    label: any;
-    minWidth?: number;
-  }
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const columns: readonly Column[] = [
     {
       id: "Image",
-      label: <Typography fontWeight='bold'>{t("image")}</Typography>,
+      label: <Typography fontWeight="bold">{t("image")}</Typography>,
     },
     {
       id: "id",
-      label: <Typography fontWeight='bold'>{t("id")}</Typography>,
+      label: <Typography fontWeight="bold">{t("id")}</Typography>,
       minWidth: 170,
     },
     {
       id: "Name",
-      label: <Typography fontWeight='bold'>{t("name")}</Typography>,
+      label: <Typography fontWeight="bold">{t("name")}</Typography>,
       minWidth: 170,
     },
     {
       id: "Owner",
-      label: <Typography fontWeight='bold'>{t("owner")}</Typography>,
+      label: <Typography fontWeight="bold">{t("owner")}</Typography>,
       minWidth: 170,
     },
     {
       id: "OrdersCount",
-      label: <Typography fontWeight='bold'>{t("ordersCount")}</Typography>,
+      label: <Typography fontWeight="bold">{t("ordersCount")}</Typography>,
       minWidth: 170,
     },
   ];
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -132,7 +147,7 @@ export default function BestSellersTable({ sellers }: BestSellersTableProps) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
-          overflow:'hidden'
+          overflow: "hidden",
         }}
       />
     </Paper>

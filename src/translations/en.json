@@ -3,12 +3,15 @@
   "password": "Password",
   "login": "Login",
   "contact": "Contact",
+  "wrongEmailOrPassword": "Wrong Email or Password",
 
 
 
   "dashboard": "Dashboard",
   "language": "Language",
   "logout": "Logout",
+  "welcomeBack": "Welcome Back",
+  "pleaseSelectATab": "Please Select a Tab",
 
 
 
@@ -33,6 +36,7 @@
   "storeId": "Store ID",
   "active": "Active",
   "banned": "Banned",
+  "darkMode": "Dark Mode",
 
   "export": "Export",
   "filter": "Filter",
@@ -84,6 +88,8 @@
   "pleaseProvideTheStore": "Please provide the store",
   "storeNameNotMatched": "Store name not matched",
   "orderItems":"Order items",
+  "orderedItems":"Ordered Items",
+
 
 
 
@@ -100,6 +106,8 @@
   "quantity": "Quantity",
   "subtotal": "Subtotal",
   "theTotal": "The total",
+  "total": "Total",
+
 
 
 

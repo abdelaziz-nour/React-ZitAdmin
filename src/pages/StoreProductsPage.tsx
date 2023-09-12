@@ -4,54 +4,87 @@ import {
   useGetStoreProductsMutation,
 } from "../redux/features/apiSlice";
 import { useEffect, useState } from "react";
-import { Box, CircularProgress, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
-import { MAIN_PADDING, MAIN_GAP } from "../redux/app/constants";
+import {
+  Box,
+  CircularProgress,
+  Tab,
+  Tabs,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { MAIN_PADDING, MAIN_GAP, SMALL_SCREEN_CONTENT_WIDTH } from "../redux/app/constants";
 import { useTranslation } from "react-i18next";
 import StoreProductsTable from "../components/tables/StoreProductsTable";
 import SearchField from "../components/SearchField";
 import StoreCategoriesTable from "../components/tables/StoreCategoriesTable";
 import shoppingBagIcon from "../assets/icons/shopping-bag-icon.png";
 import categoryIcon from "../assets/icons/category-icon.png";
-import { theme } from "../themes";
+import { lightTheme } from "../themes";
 
 const StoreProductsPage = () => {
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
-
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
-  const { storeId, storeName } = useParams();
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [value, setValue] = useState(0);
+  const [productSearchQuery, setProductSearchQuery] = useState("");
+  const [categorySearchQuery, setCategorySearchQuery] = useState("");
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Storage
+   */
   const [getStoreProducts, { data: storeProducts, isLoading }] =
     useGetStoreProductsMutation();
-
   const [getStoreCategories, { data: storeCategories }] =
     useGetStoreCategoriesMutation();
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTK Queries
+   */
+  const { storeId, storeName } = useParams();
 
-  const [value, setValue] = useState(0);
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
+  const filteredProducts = storeProducts?.data.filter((product) =>
+    product.Name.toLowerCase().includes(productSearchQuery.toLowerCase())
+  );
+  const filteredCategories = storeCategories?.data.filter((category) =>
+    category.Name.toLowerCase().includes(categorySearchQuery.toLowerCase())
+  );
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  const [productSearchQuery, setProductSearchQuery] = useState("");
-  const filteredProducts = storeProducts?.data.filter((product) =>
-    product.Name.toLowerCase().includes(productSearchQuery.toLowerCase())
-  );
   const handleProductSearchChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setProductSearchQuery(event.target.value);
   };
-
-  const [categorySearchQuery, setCategorySearchQuery] = useState("");
-  const filteredCategories = storeCategories?.data.filter((category) =>
-    category.Name.toLowerCase().includes(categorySearchQuery.toLowerCase())
-  );
   const handleCategorySearchChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setCategorySearchQuery(event.target.value);
   };
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * useEffects
+   */
   useEffect(() => {
     if (storeId) {
       const requestBody = { Store: storeId };
@@ -60,7 +93,6 @@ const StoreProductsPage = () => {
     }
   }, [getStoreProducts, getStoreCategories, storeId]);
 
-
   return (
     <Box
       p={MAIN_PADDING}
@@ -68,7 +100,7 @@ const StoreProductsPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width={xs?"75vw":"100vw"}
+      width={xs ? SMALL_SCREEN_CONTENT_WIDTH : "100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3" textAlign="center">
@@ -142,6 +174,7 @@ const StoreProductsPage = () => {
               <SearchField
                 value={productSearchQuery}
                 onChange={handleProductSearchChange}
+                width={xs && "100%"}
               />
               <StoreProductsTable products={filteredProducts || []} />
             </Box>
@@ -151,6 +184,7 @@ const StoreProductsPage = () => {
               <SearchField
                 value={categorySearchQuery}
                 onChange={handleCategorySearchChange}
+                width={xs && "100%"}
               />
               <StoreCategoriesTable categories={filteredCategories || []} />
             </Box>
@@ -162,4 +196,3 @@ const StoreProductsPage = () => {
 };
 
 export default StoreProductsPage;
-

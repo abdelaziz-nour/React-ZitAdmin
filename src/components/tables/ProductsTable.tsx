@@ -7,8 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
-import { Box
-    , Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import {
   BORDER_RADIUS,
@@ -17,17 +16,29 @@ import {
   ProductsTableProps,
 } from "../../redux/app/constants";
 
+interface Column {
+  id: "id" | "Name" | "Store" | "Price" | "Image";
+  label: any;
+  minWidth?: number;
+}
 export default function ProductsTable({ products }: ProductsTableProps) {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
 
-  interface Column {
-    id: "id" | "Name" | "Store" | "Price" | "Image";
-    label: any;
-    minWidth?: number;
-  }
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const columns: readonly Column[] = [
     {
       id: "Image",
@@ -55,10 +66,13 @@ export default function ProductsTable({ products }: ProductsTableProps) {
     },
   ];
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -133,7 +147,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
-          overflow:'hidden'
+          overflow: "hidden",
         }}
       />
     </Paper>

@@ -4,13 +4,17 @@ import App from "./App.tsx";
 import { Provider } from "react-redux";
 import store from "./redux/app/store.tsx";
 import "./i18n";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <Suspense fallback={<div>Loading ...</div>}>
-        <App />
-      </Suspense>
+      <PersistGate persistor={persistStore(store)}>
+        <Suspense fallback={<div>Loading ...</div>}>
+          <App />
+        </Suspense>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

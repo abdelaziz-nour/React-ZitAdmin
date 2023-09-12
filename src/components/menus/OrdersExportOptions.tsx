@@ -100,11 +100,11 @@ const OrdersExportOptionsMenu = ({ handleExport,storeColumn }: ExportMenuProps) 
   });
   const [temporaryExportOptions, setTemporaryExportOptions] =
     useState<OrdersExportOptions>(exportOptions);
+
   /**
    * --------------------------------------------------------------------------------------------------
    * Handlers
    */
-
   const handleSelectChange = (event: SelectChangeEvent) => {
     setExportType(event.target.value);
   };

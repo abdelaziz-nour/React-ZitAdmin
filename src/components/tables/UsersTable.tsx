@@ -29,6 +29,7 @@ import {
   StatusFilterForm,
 } from "../../redux/app/constants";
 import ExportMenu from "../menus/UsersExportMenu";
+import Amiri from "../../../fonts/Amiri-Regular.ttf";
 
 interface HeadCell {
   disablePadding: boolean;
@@ -346,6 +347,10 @@ const UsersTable = ({ users, searchQuery }: UsersTableProps) => {
 
     // Create a new jsPDF instance
     const doc = new jsPDF();
+    const amiri = "Amiri";
+    doc.addFont(Amiri, amiri, "normal");
+    doc.setFont(amiri);
+
 
     // Define an array to store the columns and an array for the rows
     const columns = [];
@@ -432,6 +437,9 @@ const UsersTable = ({ users, searchQuery }: UsersTableProps) => {
       columns: columns,
       body: rows, // Table data
       startY: yPosition + 30,
+      styles: {
+        font: amiri,
+      },
       headStyles: {
         fillColor: [0, 128, 128],
         textColor: [255, 255, 255],
@@ -552,6 +560,7 @@ const UsersTable = ({ users, searchQuery }: UsersTableProps) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  
   /**
    * --------------------------------------------------------------------------------------------------
    * useEffects

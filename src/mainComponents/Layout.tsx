@@ -8,15 +8,34 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/app/store";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { theme } from "../themes";
+import { darkTheme, lightTheme } from "../themes";
 
 const Layout = () => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
+  const { i18n } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Storage
+   */  
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode);
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
-  const [currentDirection, setCurrentDirection] = useState("ltr");
-  const {  i18n } = useTranslation();
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [currentDirection, setCurrentDirection] = useState("ltr");
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * useEffects
+   */
   useEffect(() => {
     if (i18n.language === "ar") {
       setCurrentDirection("rtl");
@@ -31,10 +50,14 @@ const Layout = () => {
   return (
     <main className="App">
       <Stack
-        direction='row'
+        direction="row"
         justifyContent="center"
         spacing={0}
-        bgcolor={theme.palette.background.default}
+        bgcolor={
+          darkMode
+            ? darkTheme.palette.background.default
+            : lightTheme.palette.background.default
+        }
       >
         {isAuthenticated && <Sidebar />}
         <Outlet />

@@ -22,22 +22,35 @@ import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
 
 const BestProductsTable = ({ products }: BestProductsTableProps) => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const isExpanded = (productId: string) => expandedId === productId;
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
   const handleExpand = (productId: string) => {
     if (expandedId === productId) {
       setExpandedId(null);
@@ -45,7 +58,9 @@ const BestProductsTable = ({ products }: BestProductsTableProps) => {
       setExpandedId(productId);
     }
   };
-
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: "70vh" }}>
@@ -116,7 +131,7 @@ const BestProductsTable = ({ products }: BestProductsTableProps) => {
                   <TableRow>
                     <TableCell
                       style={{ paddingBottom: 0, paddingTop: 0 }}
-                      colSpan={6}
+                      colSpan={7}
                     >
                       <Collapse
                         in={isExpanded(product.id)}
@@ -151,7 +166,7 @@ const BestProductsTable = ({ products }: BestProductsTableProps) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
-          overflow:'hidden'
+          overflow: "hidden",
         }}
       />
     </Paper>

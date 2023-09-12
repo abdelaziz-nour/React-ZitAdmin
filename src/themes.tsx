@@ -1,7 +1,8 @@
 import { createTheme } from "@mui/material";
 
-export const theme = createTheme({
+export const lightTheme = createTheme({
   palette: {
+    mode:'light',
     primary: {
       main: "#2081C3",
     },
@@ -12,6 +13,19 @@ export const theme = createTheme({
     },
     secondary: {
       main: "#9B8579",
+    },
+  },
+  typography: {
+    fontFamily: "Montserrat",
+    
+  },
+});
+
+export const darkTheme = createTheme({
+  palette: {
+    mode:'dark',
+    background: {
+      paper: "#041C32",
     },
   },
   typography: {

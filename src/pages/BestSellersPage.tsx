@@ -1,22 +1,54 @@
 import { useState } from "react";
-import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { MAIN_GAP, MAIN_PADDING} from "../redux/app/constants";
+import { MAIN_GAP, MAIN_PADDING, SMALL_SCREEN_CONTENT_WIDTH } from "../redux/app/constants";
 import SearchField from "../components/SearchField";
 import { useGetBestSellersQuery } from "../redux/features/apiSlice";
 import BestSellersTable from "../components/tables/BestSellersTable";
-import { theme } from "../themes";
+import { lightTheme } from "../themes";
 
 const BestSellersPage = () => {
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
-
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Hooks
+   */
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTK Queries
+   */
   const { data: sellers, isLoading } = useGetBestSellersQuery();
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
   const filteredSellers = sellers?.data.filter((seller) =>
     seller.Name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
@@ -28,11 +60,15 @@ const BestSellersPage = () => {
       flexDirection="column"
       gap={MAIN_GAP}
       height="100vh"
-      width={xs?"75vw":"100vw"}
+      width={xs ? SMALL_SCREEN_CONTENT_WIDTH : "100vw"}
     >
       <Box height="20%" display="flex" flexDirection="column" gap={MAIN_GAP}>
         <Typography variant="h3">{t("bestSellers")}</Typography>
-        <SearchField value={searchQuery} onChange={handleSearchChange} />
+        <SearchField
+          value={searchQuery}
+          onChange={handleSearchChange}
+          width={xs && "100%"}
+        />
       </Box>
 
       {isLoading ? (

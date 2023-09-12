@@ -6,16 +6,47 @@ import { useLoginMutation } from "../redux/features/apiSlice";
 import { setToken } from "../redux/features/authSlice";
 import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [login, { isLoading }] = useLoginMutation();
-
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
 
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * State
+   */
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Hooks
+   */
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * RTQ Queries
+   */
+  const [login, { isLoading }] = useLoginMutation();
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Locals
+   */
+  const loginToast = ()=>{
+    toast(t('wrongEmailOrPassword'))
+  }
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Handlers
+   */
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
@@ -27,12 +58,16 @@ const Login = () => {
         dispatch(setToken(token));
         navigate("/dashboard");
       }
+      else{
+        loginToast()
+      }
     } catch (error) {
       console.error("Login error:", error);
     }
   };
+
   return (
-    <Box height="100vh" width='100vw'>
+    <Box height="100vh" width="100vw">
       <meta charSet="utf-8" />
       <title>ZIT: Sign in</title>
       <div className="login-root">
@@ -144,12 +179,16 @@ const Login = () => {
               <div className="formbg">
                 <div className="formbg-inner padding-horizontal--48">
                   <span className="padding-bottom--15">
-                    <Typography fontWeight='bold'>{t("signInToYourAccount")}</Typography>
+                    <Typography fontWeight="bold">
+                      {t("signInToYourAccount")}
+                    </Typography>
                   </span>
                   <form id="stripe-login">
                     <div className="field padding-bottom--24">
                       <label htmlFor="username">
-                        <Typography fontWeight='bold'>{t("username")}</Typography>
+                        <Typography fontWeight="bold">
+                          {t("username")}
+                        </Typography>
                       </label>
                       <input
                         type="username"
@@ -160,10 +199,11 @@ const Login = () => {
                     <div className="field padding-bottom--24">
                       <div className="grid--50-50">
                         <label htmlFor="password">
-                          <Typography fontWeight='bold'>{t("password")}</Typography>
+                          <Typography fontWeight="bold">
+                            {t("password")}
+                          </Typography>
                         </label>
-                        <div className="reset-pass">
-                        </div>
+                        <div className="reset-pass"></div>
                       </div>
                       <input
                         type="password"
@@ -177,7 +217,15 @@ const Login = () => {
                     {isLoading ? (
                       <div className="container">
                         <div className="divider" aria-hidden="true"></div>
-                        <p className="loading-text" aria-label="Loading">
+                        <p
+                          className="loading-text"
+                          aria-label="Loading"
+                          style={{
+                            display: "flex",
+                            direction: "ltr",
+                            justifyContent: "center",
+                          }}
+                        >
                           <span className="letter" aria-hidden="true">
                             L
                           </span>
@@ -204,7 +252,6 @@ const Login = () => {
                     ) : (
                       <div className="field padding-bottom--24">
                         <input
-                        
                           type="submit"
                           value={t("login")}
                           onClick={handleLogin}
@@ -221,7 +268,7 @@ const Login = () => {
                   </span>
                   <span>
                     <a href="#">
-                      <Typography fontWeight='bold'>{t("contact")}</Typography>
+                      <Typography fontWeight="bold">{t("contact")}</Typography>
                     </a>
                   </span>
                 </div>
@@ -230,6 +277,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </Box>
   );
 };

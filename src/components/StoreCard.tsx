@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import {
   BORDER_RADIUS,
   BOX_SHADOW,
@@ -6,18 +6,28 @@ import {
   MAIN_GAP,
   MAIN_PADDING,
 } from "../redux/app/constants";
-import { theme } from "../themes";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 interface StoreCardProps {
   storeName: string;
   owner: string;
   image: string;
-  storeId:string
+  storeId: string;
 }
-const StoreCard = ({ storeName, owner,image,storeId }: StoreCardProps) => {
+const StoreCard = ({ storeName, owner, image, storeId }: StoreCardProps) => {
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * i18n
+   */
   const { t } = useTranslation();
-  const navigate = useNavigate()
+
+  /**
+   * --------------------------------------------------------------------------------------------------
+   * Hooks
+   */
+  const navigate = useNavigate();
+  const theme = useTheme();
+  
   return (
     <Box
       p={MAIN_PADDING}
@@ -39,7 +49,7 @@ const StoreCard = ({ storeName, owner,image,storeId }: StoreCardProps) => {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           alignSelf: "center",
-          borderRadius:BORDER_RADIUS
+          borderRadius: BORDER_RADIUS,
         }}
       ></Box>
       <Box
@@ -57,12 +67,18 @@ const StoreCard = ({ storeName, owner,image,storeId }: StoreCardProps) => {
       </Box>
       <Box height="25%" display="flex" alignItems="center" gap={MAIN_GAP}>
         <Box width="50%">
-        <Button variant="contained" onClick={()=>navigate(`/store-orders/${storeId}/${storeName}`)}>
+          <Button
+            variant="contained"
+            onClick={() => navigate(`/store-orders/${storeId}/${storeName}`)}
+          >
             <Typography>{t("orders")}</Typography>
           </Button>
         </Box>
         <Box width="50%">
-          <Button variant="outlined" onClick={()=>navigate(`/store-products/${storeId}/${storeName}`)}>
+          <Button
+            variant="outlined"
+            onClick={() => navigate(`/store-products/${storeId}/${storeName}`)}
+          >
             <Typography>{t("products")}</Typography>
           </Button>
         </Box>

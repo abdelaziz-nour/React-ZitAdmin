@@ -13,11 +13,10 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { DashboardRounded } from "@mui/icons-material";
+import { BrightnessLowRounded, DashboardRounded } from "@mui/icons-material";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/features/authSlice";
 import logo from "../assets/images/logo.png";
 import usersIcon from "../assets/icons/users-icon.png";
@@ -26,8 +25,10 @@ import productsIcon from "../assets/icons/products-icon.png";
 import ordersIcon from "../assets/icons/orders-icon.png";
 import sellersIcon from "../assets/icons/sellers-icons.png";
 import products2Icon from "../assets/icons/products2-icon.png";
-import { SIDEBAR_WIDTH,  } from "../redux/app/constants";
-import { theme } from "../themes";
+import { SIDEBAR_WIDTH } from "../redux/app/constants";
+import { darkTheme, lightTheme } from "../themes";
+import { toggleDarkMode } from "../redux/features/themeSlice";
+import { RootState } from "../redux/app/store";
 
 type Props = {
   icon: React.ReactElement;
@@ -36,13 +37,12 @@ type Props = {
 };
 
 const CListItem = ({ icon, text, to }: Props) => {
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
-
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const darkMode = useSelector((state: RootState) => state.theme.darkMode);
   const logoutuser = async () => {
     dispatch(logout());
     navigate("/");
@@ -56,6 +56,9 @@ const CListItem = ({ icon, text, to }: Props) => {
       case "switchLanguage":
         i18n.changeLanguage(i18n.language === "en" ? "ar" : "en");
         return;
+      case "switchDarkMode":
+        dispatch(toggleDarkMode());
+        return;
       default:
         navigate(to);
     }
@@ -63,7 +66,6 @@ const CListItem = ({ icon, text, to }: Props) => {
 
   return (
     <>
-      <Tooltip />
       <ListItem
         sx={{
           paddingX: 0,
@@ -99,6 +101,13 @@ const CListItem = ({ icon, text, to }: Props) => {
             {!xs && (
               <ListItemText
                 primary={text}
+                primaryTypographyProps={{
+                  style: {
+                    color: darkMode
+                      ? darkTheme.palette.text.primary
+                      : lightTheme.palette.text.primary,
+                  },
+                }}
                 sx={{
                   paddingX: 1,
                 }}
@@ -111,47 +120,54 @@ const CListItem = ({ icon, text, to }: Props) => {
   );
 };
 const Sidebar = () => {
-  const xs = useMediaQuery(theme.breakpoints.down("sm"));
+  const xs = useMediaQuery(lightTheme.breakpoints.down("sm"));
 
   const { t, i18n } = useTranslation();
   return (
     <Drawer
       variant="permanent"
+      // containerStyle={{height: 'calc(100% - 64px)', top: 64}}
       sx={{
-        width:xs?'4rem': SIDEBAR_WIDTH,
+        width: xs ? "4rem" : SIDEBAR_WIDTH,
+        height: 'calc(100% - 64px)'
       }}
       PaperProps={{
         sx: {
           position: "relative",
+          overflow: "hidden",
+          height:  "100vh",
+
         },
       }}
     >
       <Paper
         sx={{
           height: "100vh",
-          width:xs?'4rem': SIDEBAR_WIDTH,
-          overflowY: "hidden",
+          width: xs ? "4rem" : SIDEBAR_WIDTH,
+          overflow: "hidden",
         }}
       >
         <List
           sx={{
             marginX: 0,
             paddingX: 0,
-            width:xs?'4rem': SIDEBAR_WIDTH,
+            width: xs ? "4rem" : SIDEBAR_WIDTH,
             display: "flex",
             flexDirection: "column",
           }}
         >
-          {!xs&&<Box
-            sx={{
-              height: "7rem",
-              width: "7rem",
-              backgroundImage: `url(${logo})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              alignSelf: "center",
-            }}
-          ></Box>}
+          {!xs && (
+            <Box
+              sx={{
+                height: "7rem",
+                width: "7rem",
+                backgroundImage: `url(${logo})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                alignSelf: "center",
+              }}
+            ></Box>
+          )}
           <Divider />
           <CListItem
             icon={<DashboardRounded sx={{ color: "primary.main" }} />}
@@ -293,12 +309,12 @@ const Sidebar = () => {
             to={"switchLanguage"}
             key="switchLanguage"
           />
-          {/* <CListItem
+          <CListItem
             icon={<BrightnessLowRounded sx={{ color: "primary.main" }} />}
             text={t("darkMode")}
             to={"switchDarkMode"}
             key="switchDarkMode"
-          /> */}
+          />
           <CListItem
             icon={<LogoutRoundedIcon sx={{ color: "red" }} />}
             text={t("logout")}

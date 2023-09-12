@@ -8,8 +8,8 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: localStorage.getItem("token") || null,
-  isAuthenticated: localStorage.getItem("token") === null ? false : true,
+  token:  null,
+  isAuthenticated:  false ,
 };
 
 const authSlice = createSlice({
@@ -22,12 +22,10 @@ const authSlice = createSlice({
         secretKey
       ).toString();
       state.token = encryptedData;
-      localStorage.setItem("token", encryptedData);
       state.isAuthenticated = true;
     },
     logout: (state) => {
       state.token = null;
-      localStorage.removeItem("token");
       state.isAuthenticated = false;
     },
   },
